@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+# copy ClickOnce files as binary
+*.manifest binary
+*.application binary
+*.deploy binary
