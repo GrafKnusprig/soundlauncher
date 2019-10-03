@@ -229,9 +229,11 @@ namespace SoundLauncher
             gvLibrary.Rows[line].Cells[1].Value = file;
             Dirty = true;
         }
+
         #endregion
 
         #region event methods
+
         private void OnPlayingChanged(object sender, bool e)
         {
             if (e)
@@ -252,7 +254,7 @@ namespace SoundLauncher
 
         private void OnCodeFired(object sender, CodeEvent e)
         {
-            m_soundManager.ProcessCode(e.Code, m_errorTracker);
+            m_soundManager.PlayCode(e.Code, false, m_errorTracker);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -392,7 +394,7 @@ namespace SoundLauncher
                 if (e.ColumnIndex == 1 && e.RowIndex == 0)
                     m_soundManager.StopAllCurrentPlaying();
                 else if (e.ColumnIndex == 1 && e.RowIndex > 0)
-                    m_soundManager.ProcessCode((string)gvLibrary.Rows[e.RowIndex].Cells[0].Value, m_errorTracker);
+                    m_soundManager.PlayCode((string)gvLibrary.Rows[e.RowIndex].Cells[0].Value, false, m_errorTracker);
         }
 
         private void deleteSelectedAudioFilesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -411,6 +413,43 @@ namespace SoundLauncher
         private void volumeSlider_VolumeChanged(object sender, EventArgs e)
         {
             m_soundManager.Volume = volumeSlider.Volume;
+        }
+
+        private void playingManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var playingManagerForm = (Application.OpenForms["PlayingManagerForm"] as PlayingManagerForm);
+            if (playingManagerForm != null)
+            {
+                playingManagerForm.BringToFront();
+            }
+            else
+            {
+                playingManagerForm = new PlayingManagerForm(m_soundManager);
+                playingManagerForm.StartPosition = FormStartPosition.CenterParent;
+                playingManagerForm.Show();
+            }
+        }
+
+        private void gvLibrary_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int rowIndex = gvLibrary.HitTest(e.X, e.Y).RowIndex;
+                int columnIndex = gvLibrary.HitTest(e.X, e.Y).ColumnIndex;
+
+                ContextMenu m = new ContextMenu();
+                MenuItem loop = new MenuItem("Endless Loop");
+
+                loop.Click += (sen, args) =>
+                {
+                    m_soundManager.PlayCode((string)gvLibrary.Rows[rowIndex].Cells[0].Value, true, m_errorTracker);
+                };
+
+                m.MenuItems.Add(loop);
+
+                if (columnIndex == 1 && rowIndex > 0)
+                    m.Show(gvLibrary, new Point(e.X, e.Y));
+            }
         }
 
         private void m_errorTimer_Tick(object sender, EventArgs e)

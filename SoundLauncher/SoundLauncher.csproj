@@ -90,6 +90,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoopStream.cs" />
+    <Compile Include="PlayingManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlayingManagerForm.Designer.cs">
+      <DependentUpon>PlayingManagerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserSettings.cs" />
     <Compile Include="ErrorTracker.cs" />
     <Compile Include="ErrorTrackerForm.cs">
@@ -125,6 +132,9 @@
     <EmbeddedResource Include="OptionsForm.resx">
       <DependentUpon>OptionsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PlayingManagerForm.resx">
+      <DependentUpon>PlayingManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -143,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="audio_speaker_icon_512.ico" />
+    <None Include="Resources\repeat.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

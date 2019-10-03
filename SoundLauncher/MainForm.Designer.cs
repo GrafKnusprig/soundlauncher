@@ -58,6 +58,7 @@
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clickToPlayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.playingManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.hookedKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recalculateCodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,7 +86,6 @@
             this.gvLibrary.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.gc_code,
             this.gc_file});
-            this.gvLibrary.ContextMenuStrip = this.gvLibraryContextMenu;
             this.gvLibrary.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvLibrary.Location = new System.Drawing.Point(0, 0);
             this.gvLibrary.Name = "gvLibrary";
@@ -94,6 +94,7 @@
             this.gvLibrary.Size = new System.Drawing.Size(851, 225);
             this.gvLibrary.TabIndex = 1;
             this.gvLibrary.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mainGrid_CellClick);
+            this.gvLibrary.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gvLibrary_MouseClick);
             // 
             // gc_code
             // 
@@ -311,6 +312,7 @@
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clickToPlayToolStripMenuItem,
+            this.playingManagerToolStripMenuItem,
             this.toolStripSeparator3,
             this.hookedKeysToolStripMenuItem,
             this.recalculateCodesToolStripMenuItem,
@@ -326,6 +328,13 @@
             this.clickToPlayToolStripMenuItem.Name = "clickToPlayToolStripMenuItem";
             this.clickToPlayToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.clickToPlayToolStripMenuItem.Text = "Click to Play";
+            // 
+            // playingManagerToolStripMenuItem
+            // 
+            this.playingManagerToolStripMenuItem.Name = "playingManagerToolStripMenuItem";
+            this.playingManagerToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.playingManagerToolStripMenuItem.Text = "Playing Manager";
+            this.playingManagerToolStripMenuItem.Click += new System.EventHandler(this.playingManagerToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -455,6 +464,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmAddAudioFiles;
         private System.Windows.Forms.ToolStripMenuItem tsmDeleteSelectedFiles;
         private System.Windows.Forms.ToolStripMenuItem deleteSelectedFilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem playingManagerToolStripMenuItem;
     }
 }
 

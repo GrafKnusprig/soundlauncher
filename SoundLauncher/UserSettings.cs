@@ -49,7 +49,11 @@ namespace SoundLauncher
             }
         }
 
-        private UserSettings() { }
+        private UserSettings()
+        {
+            SelectedAudioDevices = new List<int>();
+            HookedKeys = new List<Keys>();
+        }
 
         #endregion
 
