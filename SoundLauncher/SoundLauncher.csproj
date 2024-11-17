@@ -59,7 +59,7 @@
     <ApplicationIcon>audio_speaker_icon_512.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>1542316002A1AE687321363A4FF1DF151DF966D0</ManifestCertificateThumbprint>
