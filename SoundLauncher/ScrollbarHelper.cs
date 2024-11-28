@@ -5,7 +5,7 @@ namespace SoundLauncher
 {
     internal class ScrollbarHelper
     {
-        private void LinkScrollBarToDataGridView(DataGridView gridView, ThemedScrollBar verticalScrollBar, ThemedScrollBar horizontalScrollBar = null)
+        internal void LinkScrollBarToDataGridView(DataGridView gridView, ThemedScrollBar verticalScrollBar, ThemedScrollBar horizontalScrollBar = null)
         {
             // Hide default scrollbars
             gridView.ScrollBars = ScrollBars.None;
@@ -13,6 +13,11 @@ namespace SoundLauncher
             // Link vertical scrollbar
             if (verticalScrollBar != null)
             {
+                // Apply ThemeManager.currentTheme colors to the scrollbar
+                verticalScrollBar.TrackColor = ThemeManager.currentTheme.Background;
+                verticalScrollBar.ThumbColor = ThemeManager.currentTheme.Highlight;
+                verticalScrollBar.BorderColor = ThemeManager.currentTheme.HeaderBorder;
+
                 verticalScrollBar.Scroll += (s, e) =>
                 {
                     gridView.FirstDisplayedScrollingRowIndex = verticalScrollBar.Value;
@@ -25,6 +30,11 @@ namespace SoundLauncher
             // Link horizontal scrollbar
             if (horizontalScrollBar != null)
             {
+                // Apply ThemeManager.currentTheme colors to the scrollbar
+                horizontalScrollBar.TrackColor = ThemeManager.currentTheme.Background;
+                horizontalScrollBar.ThumbColor = ThemeManager.currentTheme.Highlight;
+                horizontalScrollBar.BorderColor = ThemeManager.currentTheme.HeaderBorder;
+
                 horizontalScrollBar.Scroll += (s, e) =>
                 {
                     gridView.HorizontalScrollingOffset = horizontalScrollBar.Value;

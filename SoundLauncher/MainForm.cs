@@ -34,6 +34,10 @@ namespace SoundLauncher
 
         private SoundManager m_soundManager;
 
+        private ThemedScrollBar verticalScrollBar1;
+
+        private ThemedScrollBar verticalScrollBar2;
+
         #endregion
 
         #region properties
@@ -69,6 +73,35 @@ namespace SoundLauncher
             InitializeComponent();
             Initialize();
             ThemeManager.ApplyTheme(this); // Apply theme to the form and all its controls
+
+            // Initialize scrollbars
+            verticalScrollBar1 = new ThemedScrollBar
+            {
+                Dock = DockStyle.Right,
+                LargeChange = 10,
+                Maximum = 100, // Will be updated dynamically
+                TrackColor = Color.FromArgb(30, 30, 30),
+                ThumbColor = Color.FromArgb(229, 152, 102), // Dark pastel orange
+                BorderColor = Color.FromArgb(45, 45, 45)
+            };
+            this.Controls.Add(verticalScrollBar1);
+
+            verticalScrollBar2 = new ThemedScrollBar
+            {
+                Dock = DockStyle.Right,
+                LargeChange = 10,
+                Maximum = 100, // Will be updated dynamically
+                TrackColor = Color.FromArgb(30, 30, 30),
+                ThumbColor = Color.FromArgb(229, 152, 102),
+                BorderColor = Color.FromArgb(45, 45, 45)
+            };
+            this.Controls.Add(verticalScrollBar2);
+
+            var sh = new ScrollbarHelper();
+
+            // Link scrollbars to gridviews
+            sh.LinkScrollBarToDataGridView(gvLibrary, verticalScrollBar1);
+            sh.LinkScrollBarToDataGridView(gvDevice, verticalScrollBar2);
         }
 
         #endregion
@@ -105,8 +138,6 @@ namespace SoundLauncher
 
             gvDevice.CellValueChanged += devicegrid_CellValueChanged;
             gvDevice.CellMouseUp += devicegrid_CellMouseUP;
-            gvDevice.ScrollBars = ScrollBars.None;
-
         }
 
         private void SaveChangesIfNecessary()
