@@ -82,8 +82,8 @@ public class ThemedScrollBar : Control
         }
 
         // Calculate thumb size and position
-        int thumbHeight = Math.Max(20, (int)((double)LargeChange / (Maximum - Minimum + LargeChange) * Height));
-        int thumbPosition = (int)((double)(Value - Minimum) / (Maximum - Minimum) * (Height - thumbHeight));
+        int thumbHeight = Math.Max(20, (int)((double)LargeChange / Math.Max(1, (Maximum - Minimum + LargeChange)) * Height));
+        int thumbPosition = Math.Max(0, Math.Min(Height - thumbHeight, (int)((double)(Value - Minimum) / (Maximum - Minimum) * (Height - thumbHeight))));
 
         // Draw thumb
         var thumbRect = new Rectangle(1, thumbPosition, Width - 2, thumbHeight);
@@ -103,8 +103,8 @@ public class ThemedScrollBar : Control
     {
         base.OnMouseDown(e);
 
-        int thumbHeight = Math.Max(20, (int)((double)LargeChange / (Maximum - Minimum + LargeChange) * Height));
-        int thumbPosition = (int)((double)(Value - Minimum) / (Maximum - Minimum) * (Height - thumbHeight));
+        int thumbHeight = Math.Max(20, (int)((double)LargeChange / Math.Max(1, (Maximum - Minimum + LargeChange)) * Height));
+        int thumbPosition = Math.Max(0, Math.Min(Height - thumbHeight, (int)((double)(Value - Minimum) / (Maximum - Minimum) * (Height - thumbHeight))));
         var thumbRect = new Rectangle(1, thumbPosition, Width - 2, thumbHeight);
 
         if (thumbRect.Contains(e.Location))
@@ -122,10 +122,11 @@ public class ThemedScrollBar : Control
         if (_isDragging)
         {
             int deltaY = e.Location.Y - _dragStartPoint.Y;
-            int trackHeight = Height - Math.Max(20, (int)((double)LargeChange / (Maximum - Minimum + LargeChange) * Height));
+            int thumbHeight = Math.Max(20, (int)((double)LargeChange / Math.Max(1, (Maximum - Minimum + LargeChange)) * Height));
+            int trackHeight = Math.Max(1, Height - thumbHeight);
             double valuePerPixel = (double)(Maximum - Minimum) / trackHeight;
 
-            Value = _dragStartValue + (int)(deltaY * valuePerPixel);
+            Value = Math.Max(Minimum, Math.Min(Maximum, _dragStartValue + (int)(deltaY * valuePerPixel)));
         }
     }
 

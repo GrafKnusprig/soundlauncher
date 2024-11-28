@@ -34,9 +34,9 @@ namespace SoundLauncher
 
         private SoundManager m_soundManager;
 
-        private ThemedScrollBar verticalScrollBar1;
+        private ThemedScrollBar verticalScrollBarLibrary;
 
-        private ThemedScrollBar verticalScrollBar2;
+        private ThemedScrollBar verticalScrollBarDevice;
 
         #endregion
 
@@ -74,34 +74,39 @@ namespace SoundLauncher
             Initialize();
             ThemeManager.ApplyTheme(this); // Apply theme to the form and all its controls
 
-            // Initialize scrollbars
-            verticalScrollBar1 = new ThemedScrollBar
+            // Initialize ThemedScrollBar for Grid 1
+            verticalScrollBarLibrary = new ThemedScrollBar
             {
-                Dock = DockStyle.Right,
-                LargeChange = 10,
-                Maximum = 100, // Will be updated dynamically
-                TrackColor = Color.FromArgb(30, 30, 30),
-                ThumbColor = Color.FromArgb(229, 152, 102), // Dark pastel orange
-                BorderColor = Color.FromArgb(45, 45, 45)
-            };
-            this.Controls.Add(verticalScrollBar1);
-
-            verticalScrollBar2 = new ThemedScrollBar
-            {
-                Dock = DockStyle.Right,
-                LargeChange = 10,
-                Maximum = 100, // Will be updated dynamically
+                Width = 20,
+                Dock = DockStyle.None,
                 TrackColor = Color.FromArgb(30, 30, 30),
                 ThumbColor = Color.FromArgb(229, 152, 102),
                 BorderColor = Color.FromArgb(45, 45, 45)
             };
-            this.Controls.Add(verticalScrollBar2);
+            gvLibrary.Parent.Controls.Add(verticalScrollBarLibrary);
 
-            var sh = new ScrollbarHelper();
+            // Initialize ThemedScrollBar for Grid 2
+            verticalScrollBarDevice = new ThemedScrollBar
+            {
+                Width = 20,
+                Dock = DockStyle.None,
+                TrackColor = Color.FromArgb(30, 30, 30),
+                ThumbColor = Color.FromArgb(229, 152, 102),
+                BorderColor = Color.FromArgb(45, 45, 45)
+            };
+            gvDevice.Parent.Controls.Add(verticalScrollBarDevice);
 
-            // Link scrollbars to gridviews
-            sh.LinkScrollBarToDataGridView(gvLibrary, verticalScrollBar1);
-            sh.LinkScrollBarToDataGridView(gvDevice, verticalScrollBar2);
+            // Attach Scrollbars to Grids
+            AttachScrollBarToGrid(gvLibrary, verticalScrollBarLibrary);
+            AttachScrollBarToGrid(gvDevice, verticalScrollBarDevice);
+
+            // Enable mouse wheel scrolling
+            gvLibrary.MouseWheel += (s, e) => HandleMouseWheelScroll(e, gvLibrary, verticalScrollBarLibrary);
+            gvDevice.MouseWheel += (s, e) => HandleMouseWheelScroll(e, gvDevice, verticalScrollBarDevice);
+
+            // Update scrollbars on form resize
+            Resize += MainView_Resize;
+            PositionScrollBars(); // Initial positioning
         }
 
         #endregion
@@ -509,6 +514,79 @@ namespace SoundLauncher
         {
             base.OnHandleCreated(e);
             DarkModeHelper.EnableDarkMode(this.Handle);
+        }
+
+        #endregion
+
+        #region Scrollbar
+
+        private void MainView_Resize(object sender, EventArgs e)
+        {
+            PositionScrollBars();
+        }
+
+        private void AttachScrollBarToGrid(DataGridView gridView, ThemedScrollBar verticalScrollBar)
+        {
+            // Hide default scrollbars
+            gridView.ScrollBars = ScrollBars.None;
+
+            // Link scrollbar to grid scrolling
+            verticalScrollBar.Scroll += (s, e) =>
+            {
+                int newRowIndex = verticalScrollBar.Value;
+                gridView.FirstDisplayedScrollingRowIndex = ClampRowIndex(gridView, newRowIndex);
+            };
+
+            gridView.RowsAdded += (s, e) => UpdateScrollBar(gridView, verticalScrollBar);
+            gridView.RowsRemoved += (s, e) => UpdateScrollBar(gridView, verticalScrollBar);
+        }
+
+        private void UpdateScrollBar(DataGridView gridView, ThemedScrollBar verticalScrollBar)
+        {
+            int totalRows = gridView.RowCount;
+            int visibleRows = gridView.DisplayedRowCount(false);
+
+            // Set maximum as the last valid row index
+            verticalScrollBar.Maximum = Math.Max(0, totalRows - 1);
+            verticalScrollBar.LargeChange = Math.Max(1, visibleRows); // Ensure LargeChange is at least 1
+            verticalScrollBar.Value = ClampRowIndex(gridView, verticalScrollBar.Value);
+
+            // Show scrollbar only if there are more rows than visible
+            verticalScrollBar.Visible = totalRows > visibleRows;
+        }
+
+        private void HandleMouseWheelScroll(MouseEventArgs e, DataGridView gridView, ThemedScrollBar verticalScrollBar)
+        {
+            // Calculate scroll amount (one notch = 3 rows)
+            int scrollDelta = e.Delta > 0 ? -3 : 3;
+
+            // Adjust scrollbar value
+            verticalScrollBar.Value = ClampRowIndex(gridView, verticalScrollBar.Value + scrollDelta);
+
+            // Update grid scrolling
+            gridView.FirstDisplayedScrollingRowIndex = verticalScrollBar.Value;
+        }
+
+        private int ClampRowIndex(DataGridView gridView, int rowIndex)
+        {
+            return Math.Max(0, Math.Min(rowIndex, gridView.RowCount - 1));
+        }
+
+        private void PositionScrollBars()
+        {
+            // Adjust the size of gvLibrary to make space for the scrollbar
+            gvLibrary.Width = gvLibrary.Parent.ClientSize.Width - verticalScrollBarLibrary.Width;
+            verticalScrollBarLibrary.Height = gvLibrary.Height;
+            verticalScrollBarLibrary.Location = new Point(gvLibrary.Right, gvLibrary.Top);
+
+            // Adjust the size of gvDevices to make space for the scrollbar
+            gvDevice.Width = gvDevice.Parent.ClientSize.Width - verticalScrollBarDevice.Width;
+            verticalScrollBarDevice.Height = gvDevice.Height;
+            verticalScrollBarDevice.Location = new Point(gvDevice.Right, gvDevice.Top);
+
+            // Debug info
+            Console.WriteLine($"ScrollBarLibrary: Location = {verticalScrollBarLibrary.Location}, Size = {verticalScrollBarLibrary.Size}");
+            Console.WriteLine($"ScrollBarDevices: Location = {verticalScrollBarDevice.Location}, Size = {verticalScrollBarDevice.Size}");
         }
 
         #endregion
