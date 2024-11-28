@@ -86,7 +86,7 @@
             this.gvLibrary.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.gc_code,
             this.gc_file});
-            this.gvLibrary.Dock = System.Windows.Forms.DockStyle.Left;
+            this.gvLibrary.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvLibrary.Location = new System.Drawing.Point(0, 0);
             this.gvLibrary.Name = "gvLibrary";
             this.gvLibrary.ReadOnly = true;
@@ -152,7 +152,7 @@
             this.gvDevice.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.gc_check,
             this.gc_device});
-            this.gvDevice.Dock = System.Windows.Forms.DockStyle.Left;
+            this.gvDevice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvDevice.Location = new System.Drawing.Point(0, 0);
             this.gvDevice.Name = "gvDevice";
             this.gvDevice.Size = new System.Drawing.Size(851, 142);

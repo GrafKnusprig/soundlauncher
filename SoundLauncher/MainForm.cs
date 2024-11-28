@@ -74,39 +74,41 @@ namespace SoundLauncher
             Initialize();
             ThemeManager.ApplyTheme(this); // Apply theme to the form and all its controls
 
-            // Initialize ThemedScrollBar for Grid 1
-            verticalScrollBarLibrary = new ThemedScrollBar
-            {
-                Width = 20,
-                Dock = DockStyle.None,
-                TrackColor = Color.FromArgb(30, 30, 30),
-                ThumbColor = Color.FromArgb(229, 152, 102),
-                BorderColor = Color.FromArgb(45, 45, 45)
-            };
-            gvLibrary.Parent.Controls.Add(verticalScrollBarLibrary);
+            //// Initialize ThemedScrollBar for Grid 1
+            //verticalScrollBarLibrary = new ThemedScrollBar
+            //{
+            //    Width = 20,
+            //    Dock = DockStyle.None,
+            //    TrackColor = Color.FromArgb(30, 30, 30),
+            //    ThumbColor = Color.FromArgb(229, 152, 102),
+            //    BorderColor = Color.FromArgb(45, 45, 45)
+            //};
+            //gvLibrary.Parent.Controls.Add(verticalScrollBarLibrary);
 
-            // Initialize ThemedScrollBar for Grid 2
-            verticalScrollBarDevice = new ThemedScrollBar
-            {
-                Width = 20,
-                Dock = DockStyle.None,
-                TrackColor = Color.FromArgb(30, 30, 30),
-                ThumbColor = Color.FromArgb(229, 152, 102),
-                BorderColor = Color.FromArgb(45, 45, 45)
-            };
-            gvDevice.Parent.Controls.Add(verticalScrollBarDevice);
+            //// Initialize ThemedScrollBar for Grid 2
+            //verticalScrollBarDevice = new ThemedScrollBar
+            //{
+            //    Width = 20,
+            //    Dock = DockStyle.None,
+            //    TrackColor = Color.FromArgb(30, 30, 30),
+            //    ThumbColor = Color.FromArgb(229, 152, 102),
+            //    BorderColor = Color.FromArgb(45, 45, 45)
+            //};
+            //gvDevice.Parent.Controls.Add(verticalScrollBarDevice);
 
-            // Attach Scrollbars to Grids
-            AttachScrollBarToGrid(gvLibrary, verticalScrollBarLibrary);
-            AttachScrollBarToGrid(gvDevice, verticalScrollBarDevice);
+            //// Attach Scrollbars to Grids
+            //AttachScrollBarToGrid(gvLibrary, verticalScrollBarLibrary);
+            //AttachScrollBarToGrid(gvDevice, verticalScrollBarDevice);
 
-            // Enable mouse wheel scrolling
-            gvLibrary.MouseWheel += (s, e) => HandleMouseWheelScroll(e, gvLibrary, verticalScrollBarLibrary);
-            gvDevice.MouseWheel += (s, e) => HandleMouseWheelScroll(e, gvDevice, verticalScrollBarDevice);
+            //// Enable mouse wheel scrolling
+            //gvLibrary.MouseWheel += (s, e) => HandleMouseWheelScroll(e, gvLibrary, verticalScrollBarLibrary);
+            //gvDevice.MouseWheel += (s, e) => HandleMouseWheelScroll(e, gvDevice, verticalScrollBarDevice);
 
-            // Update scrollbars on form resize
-            Resize += MainView_Resize;
-            PositionScrollBars(); // Initial positioning
+            //// Update scrollbars on form resize
+            //gvLibrary.Dock = DockStyle.Left;
+            //gvDevice.Dock = DockStyle.Left;
+            //Resize += MainView_Resize;
+            //PositionScrollBars(); // Initial positioning
         }
 
         #endregion
