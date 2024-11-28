@@ -175,6 +175,7 @@
             // 
             // tbFilePath
             // 
+            this.tbFilePath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbFilePath.Location = new System.Drawing.Point(87, 6);
             this.tbFilePath.Name = "tbFilePath";
             this.tbFilePath.ReadOnly = true;
@@ -326,44 +327,44 @@
             // 
             this.clickToPlayToolStripMenuItem.CheckOnClick = true;
             this.clickToPlayToolStripMenuItem.Name = "clickToPlayToolStripMenuItem";
-            this.clickToPlayToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.clickToPlayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clickToPlayToolStripMenuItem.Text = "Click to Play";
             // 
             // playingManagerToolStripMenuItem
             // 
             this.playingManagerToolStripMenuItem.Name = "playingManagerToolStripMenuItem";
-            this.playingManagerToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.playingManagerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.playingManagerToolStripMenuItem.Text = "Playing Manager";
             this.playingManagerToolStripMenuItem.Click += new System.EventHandler(this.playingManagerToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(167, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // hookedKeysToolStripMenuItem
             // 
             this.hookedKeysToolStripMenuItem.Name = "hookedKeysToolStripMenuItem";
-            this.hookedKeysToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.hookedKeysToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.hookedKeysToolStripMenuItem.Text = "Hooked Keys";
             this.hookedKeysToolStripMenuItem.Click += new System.EventHandler(this.hookedKeysToolStripMenuItem_Click);
             // 
             // recalculateCodesToolStripMenuItem
             // 
             this.recalculateCodesToolStripMenuItem.Name = "recalculateCodesToolStripMenuItem";
-            this.recalculateCodesToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.recalculateCodesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.recalculateCodesToolStripMenuItem.Text = "Recalculate Codes";
             this.recalculateCodesToolStripMenuItem.Click += new System.EventHandler(this.recalculateCodesToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(167, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
             // 
             // errorLogToolStripMenuItem
             // 
             this.errorLogToolStripMenuItem.Name = "errorLogToolStripMenuItem";
-            this.errorLogToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.errorLogToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.errorLogToolStripMenuItem.Text = "Error Log";
             this.errorLogToolStripMenuItem.Click += new System.EventHandler(this.errorLogToolStripMenuItem_Click);
             // 

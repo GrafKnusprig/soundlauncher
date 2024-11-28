@@ -3,6 +3,7 @@ using SoundLauncher.Properties;
 using System;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace SoundLauncher
@@ -67,6 +68,7 @@ namespace SoundLauncher
         {
             InitializeComponent();
             Initialize();
+            ThemeManager.ApplyTheme(this); // Apply theme to the form and all its controls
         }
 
         #endregion
@@ -103,6 +105,8 @@ namespace SoundLauncher
 
             gvDevice.CellValueChanged += devicegrid_CellValueChanged;
             gvDevice.CellMouseUp += devicegrid_CellMouseUP;
+            gvDevice.ScrollBars = ScrollBars.None;
+
         }
 
         private void SaveChangesIfNecessary()
@@ -464,6 +468,16 @@ namespace SoundLauncher
                 optionsToolStripMenuItem.BackColor = m_defaultMenuColor;
                 errorLogToolStripMenuItem.BackColor = m_subMenuDefaultColor;
             }
+        }
+
+        #endregion
+
+        #region overrides
+
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+            DarkModeHelper.EnableDarkMode(this.Handle);
         }
 
         #endregion

@@ -14,6 +14,7 @@ namespace SoundLauncher
         [STAThread]
         static void Main()
         {
+            ThemeManager.currentTheme = new DarkOrangeTheme();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());

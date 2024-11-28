@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace SoundLauncher
@@ -104,5 +105,13 @@ namespace SoundLauncher
                 tb.Tag = null;
             }
         }
+
+        #region overrides
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+            DarkModeHelper.EnableDarkMode(this.Handle);
+        }
+        #endregion
     }
 }

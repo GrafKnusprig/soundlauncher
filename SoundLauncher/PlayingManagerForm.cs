@@ -1,4 +1,5 @@
 ﻿using SoundLauncher.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -66,11 +67,19 @@ namespace SoundLauncher
             UpdatePlayingFiles(codes);
         }
 
-        #endregion
-
         private void gvPlayingManager_SelectionChanged(object sender, System.EventArgs e)
         {
             gvPlayingManager.ClearSelection();
         }
+        #endregion
+
+
+        #region overrides
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+            DarkModeHelper.EnableDarkMode(this.Handle);
+        }
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace SoundLauncher
 {
@@ -17,5 +18,13 @@ namespace SoundLauncher
                 errorTracker.HasNewError = false;
             }
         }
+
+        #region overrides
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+            DarkModeHelper.EnableDarkMode(this.Handle);
+        }
+        #endregion
     }
 }

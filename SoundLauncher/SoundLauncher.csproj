@@ -90,6 +90,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DarkModeHelper.cs" />
     <Compile Include="LoopStream.cs" />
     <Compile Include="PlayingManagerForm.cs">
       <SubType>Form</SubType>
@@ -97,6 +98,12 @@
     <Compile Include="PlayingManagerForm.Designer.cs">
       <DependentUpon>PlayingManagerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ScrollbarHelper.cs" />
+    <Compile Include="ThemedScrollbar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ThemeManager.cs" />
+    <Compile Include="Themes.cs" />
     <Compile Include="UserSettings.cs" />
     <Compile Include="ErrorTracker.cs" />
     <Compile Include="ErrorTrackerForm.cs">
