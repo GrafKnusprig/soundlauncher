@@ -24,6 +24,7 @@ namespace SoundLauncher
                                           textBox7,
                                           textBox8,
                                           textBox9 };
+            ThemeManager.ApplyTheme(this);
         }
 
         public IList<Keys> GetKeys()

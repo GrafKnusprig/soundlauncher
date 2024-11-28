@@ -8,6 +8,7 @@ namespace SoundLauncher
         public ErrorTrackerForm()
         {
             InitializeComponent();
+            ThemeManager.ApplyTheme(this);
         }
 
         public void Init(ErrorTracker errorTracker)

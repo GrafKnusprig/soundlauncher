@@ -51,7 +51,6 @@ namespace SoundLauncher
             dgv.EnableHeadersVisualStyles = false; // Allow custom styling
             dgv.ColumnHeadersDefaultCellStyle.BackColor = currentTheme.ButtonBackground;
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = currentTheme.ButtonForeground;
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
             dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
 
             // Advanced Column Header Borders

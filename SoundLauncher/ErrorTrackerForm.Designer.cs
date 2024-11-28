@@ -34,6 +34,7 @@
             // 
             // textBox
             // 
+            this.textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox.Location = new System.Drawing.Point(0, 0);
             this.textBox.Multiline = true;

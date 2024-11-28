@@ -32,7 +32,7 @@ namespace SoundLauncher
     {
         public Color Background => Color.FromArgb(30, 30, 30);  // Dark background
         public Color Foreground => Color.White;                 // Text color
-        public Color Highlight => Color.FromArgb(229, 152, 102); // Dark pastel orange
+        public Color Highlight => Color.FromArgb(209, 84, 0); // Dark pastel orange
         public Color ButtonBackground => Color.FromArgb(50, 50, 50);
         public Color ButtonForeground => Color.White;
         public Color AlternatingRow => Color.FromArgb(40, 40, 40); // Slightly lighter rows

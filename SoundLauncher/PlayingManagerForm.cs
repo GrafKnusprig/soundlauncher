@@ -25,6 +25,7 @@ namespace SoundLauncher
             m_soundManager = soundManager;
             soundManager.CurrentlyPlayingSoundsChanged += OnCurrentlyPlayingSoundsChanged;
             UpdatePlayingFiles(m_soundManager.CurrentlyPlayingSounds);
+            ThemeManager.ApplyTheme(this);
         }
 
         #endregion
